@@ -10,6 +10,19 @@ setup({explicit_timeout: true});
 // Hide native implementation so polyfill will be used
 self.TextEncoder = null;
 self.TextDecoder = null;
+
+// Defines encoding fallback strategy
+// First try to use Best-Fit Fallback, then Replacement fallback
+this["encode-fallback-replacement"] =
+    {
+        "windows-1251": {
+            "replacement": 63,
+            "index": "windows-1252"
+        },
+        "windows-1252": {
+            "replacement": 63
+        }
+    };
 </script>
 
 <script src="../lib/encoding-indexes.js"></script>
@@ -25,3 +38,4 @@ self.TextDecoder = null;
 <script src="test-euc-kr.js"></script>
 <script src="test-gb18030.js"></script>
 <script src="test-x-user-defined.js"></script>
+<script src="test-fallback.js"></script>
