@@ -1,0 +1,5 @@
+.DS_Store
+.vscode/
+.idea/
+.pnpm-store/
+node_modules/

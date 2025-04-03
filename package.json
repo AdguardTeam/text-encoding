@@ -1,38 +1,46 @@
 {
-  "name": "text-encoding",
-  "author": "Joshua Bell <inexorabletash@gmail.com>",
-  "contributors": [
-    "Joshua Bell <inexorabletash@gmail.com>",
-    "Rick Eyre <rick.eyre@outlook.com>",
-    "Eugen Podaru <eugen.podaru@live.com>",
-    "Filip Dupanović <filip.dupanovic@gmail.com>",
-    "Anne van Kesteren <annevk@annevk.nl>",
-    "Author: Francis Avila <francisga@gmail.com>",
-    "Michael J. Ryan <tracker1@gmail.com>",
-    "Pierre Queinnec <pierre@queinnec.org>",
-    "Zack Weinberg <zackw@panix.com>"
-  ],
-  "version": "0.8.0",
-  "description": "Polyfill for the Encoding Living Standard's API.",
-  "main": "index.js",
-  "types": "index.d.ts",
-  "files": [
-    "index.js",
-    "lib/encoding.js",
-    "lib/encoding-indexes.js"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/inexorabletash/text-encoding.git"
-  },
-  "keywords": [
-    "encoding",
-    "decoding",
-    "living standard"
-  ],
-  "bugs": {
-    "url": "https://github.com/inexorabletash/text-encoding/issues"
-  },
-  "homepage": "https://github.com/inexorabletash/text-encoding",
-  "license": "(Unlicense OR Apache-2.0)"
+    "name": "@adguard/text-encoding",
+    "version": "0.8.1",
+    "description": "Polyfill for the Encoding Living Standard's API.",
+    "author": "Joshua Bell <inexorabletash@gmail.com>",
+    "contributors": [
+        "Joshua Bell <inexorabletash@gmail.com>",
+        "Rick Eyre <rick.eyre@outlook.com>",
+        "Eugen Podaru <eugen.podaru@live.com>",
+        "Filip Dupanović <filip.dupanovic@gmail.com>",
+        "Anne van Kesteren <annevk@annevk.nl>",
+        "Author: Francis Avila <francisga@gmail.com>",
+        "Michael J. Ryan <tracker1@gmail.com>",
+        "Pierre Queinnec <pierre@queinnec.org>",
+        "Zack Weinberg <zackw@panix.com>",
+        "AdGuard extension team <extensions@adguard.com>"
+    ],
+    "main": "index.js",
+    "types": "index.d.ts",
+    "files": [
+        "index.js",
+        "lib/encoding.js",
+        "lib/encoding-indexes.js"
+    ],
+    "scripts": {
+        "build-txt": "node tools/build-txt.js",
+        "test": "node tools/run-tests.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/AdguardTeam/text-encoding.git"
+    },
+    "keywords": [
+        "encoding",
+        "decoding",
+        "living standard"
+    ],
+    "bugs": {
+        "url": "https://github.com/AdguardTeam/text-encoding/issues"
+    },
+    "homepage": "https://github.com/AdguardTeam/text-encoding",
+    "license": "(Unlicense OR Apache-2.0)",
+    "devDependencies": {
+        "puppeteer": "^24.5.0"
+    }
 }

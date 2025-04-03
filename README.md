@@ -1,5 +1,4 @@
-text-encoding
-==============
+# text-encoding
 
 This is a polyfill for the [Encoding Living
 Standard](https://encoding.spec.whatwg.org/) API for the Web, allowing
@@ -14,52 +13,94 @@ or particular module schemes.
 
 Basic examples and tests are included.
 
-### Install ###
+- [Development](#development)
+    - [Cloning](#cloning)
+    - [Testing](#testing)
+- [Usage](#usage)
+    - [npm module](#npm-module)
+    - [HTML page usage](#html-page-usage)
+- [API overview](#api-overview)
+    - [Basic usage](#basic-usage)
+    - [Streaming decode](#streaming-decode)
+- [Encodings](#encodings)
+- [Non-standard behavior](#non-standard-behavior)
+
+## Development
+
+### Cloning
+
+> ⚠️ Since there are submodules, you need to clone the repo with
+> `--recurse-submodules` option. Otherwise, tests will not work.
+
+```bash
+git clone --recurse-submodules <repo url>
+```
+
+### Testing
+
+The tests are in the `test` directory. To run them, you need to:
+
+Install dependencies:
+
+```bash
+pnpm install
+```
+
+Run tests:
+
+```bash
+pnpm test
+```
+
+## Usage
 
 There are a few ways you can get and use the `text-encoding` library.
 
-### HTML Page Usage ###
+### npm module
+
+The package is published to **npm** as
+[@adguard/text-encoding](https://www.npmjs.com/package/@adguard/text-encoding).
+
+```js
+import TextEncoding from '@adguard/text-encoding';
+
+const { TextEncoder, TextDecoder } = TextEncoding;
+```
+
+## HTML page usage
 
 Clone the repo and include the files directly:
 
 ```html
-  <!-- Required for non-UTF encodings -->
-  <script src="encoding-indexes.js"></script>
-  <script src="encoding.js"></script>
+<!-- Required for non-UTF encodings -->
+<script src="encoding-indexes.js"></script>
+<script src="encoding.js"></script>
 ```
 
 This is the only use case the developer cares about. If you want those
 fancy module and/or package manager things that are popular these days
 you should probably use a different library.
 
-#### Package Managers ####
+## API overview
 
-The package is published to **npm** and **bower** as `text-encoding`.
-Use through these is not really supported, since they aren't used by
-the developer of the library. Using `require()` in interesting ways
-probably breaks. Patches welcome, as long as they don't break the
-basic use of the files via `<script>`.
-
-### API Overview ###
-
-Basic Usage
+### Basic usage
 
 ```js
-  var uint8array = new TextEncoder().encode(string);
-  var string = new TextDecoder(encoding).decode(uint8array);
+var uint8array = new TextEncoder().encode(string);
+var string = new TextDecoder(encoding).decode(uint8array);
 ```
 
-Streaming Decode
+### Streaming decode
 
 ```js
-  var string = "", decoder = new TextDecoder(encoding), buffer;
-  while (buffer = next_chunk()) {
+var string = "", decoder = new TextDecoder(encoding), buffer;
+while (buffer = next_chunk()) {
     string += decoder.decode(buffer, {stream:true});
-  }
-  string += decoder.decode(); // finish the stream
+}
+string += decoder.decode(); // finish the stream
 ```
 
-### Encodings ###
+## Encodings
 
 All encodings from the Encoding specification are supported:
 
@@ -80,7 +121,7 @@ an additional `encoding-indexes.js` file to be included. It is rather
 large (596kB uncompressed, 188kB gzipped); portions may be deleted if
 support for some encodings is not required.
 
-### Non-Standard Behavior ###
+## Non-standard behavior
 
 As required by the specification, only encoding to **utf-8** is
 supported. If you want to try it out, you can force a non-standard
@@ -89,7 +130,9 @@ TextEncoder and a label. For example:
 
 ```js
 var uint8array = new TextEncoder(
-  'windows-1252', { NONSTANDARD_allowLegacyEncoding: true }).encode(text);
+    'windows-1252',
+    { NONSTANDARD_allowLegacyEncoding: true },
+).encode(text);
 ```
 
 But note that the above won't work if you're using the polyfill in a
@@ -100,7 +143,7 @@ You can force the polyfill to be used by using this before the polyfill:
 
 ```html
 <script>
-window.TextEncoder = window.TextDecoder = null;
+    window.TextEncoder = window.TextDecoder = null;
 </script>
 ```
 
