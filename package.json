@@ -40,6 +40,9 @@
     },
     "homepage": "https://github.com/AdguardTeam/text-encoding",
     "license": "(Unlicense OR Apache-2.0)",
+    "pnpm": {
+        "neverBuiltDependencies": []
+    },
     "devDependencies": {
         "puppeteer": "^24.5.0"
     }

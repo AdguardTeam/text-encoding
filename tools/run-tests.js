@@ -28,7 +28,10 @@ const TESTS_TIMEOUT_MS = 10 * 1000;
     const testPath = path.resolve(__dirname, TESTS_PAGE_PATH);
 
     const browser = await puppeteer.launch({
-        headless: true,
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+        ],
     });
 
     const page = await browser.newPage();

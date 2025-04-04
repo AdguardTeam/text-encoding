@@ -5,7 +5,7 @@ plan:
   key: AGTEXTENCODTEST
   name: text-encoding - test
 variables:
-  dockerPuppeteer: adguard/puppeteer-runner:8.0--1
+  dockerPuppeteer: adguard/puppeteer-runner:22.14--24.5--0
 
 stages:
   - Build:
@@ -29,6 +29,9 @@ Build:
           - |-
             set -e
             set -x
+
+            # init submodules for tests
+            git submodule update --init --recursive
 
             # Fix mixed logs
             exec 2>&1
