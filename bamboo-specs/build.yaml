@@ -61,7 +61,7 @@ Build:
               exit 1
             fi
 
-            pnpm pack --filename text-encoding.tgz
+            pnpm pack && mv adguard-text-encoding-*.tgz text-encoding.tgz
 
             # clean up at the end
             rm -rf node_modules
