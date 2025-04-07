@@ -1,6 +1,6 @@
 {
     "name": "@adguard/text-encoding",
-    "version": "0.8.2",
+    "version": "0.8.3",
     "description": "Polyfill for the Encoding Living Standard's API.",
     "author": "Joshua Bell <inexorabletash@gmail.com>",
     "contributors": [
