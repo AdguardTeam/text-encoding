@@ -36,7 +36,7 @@ Build:
             exec 2>&1
 
             # install dependencies at the beginning
-            pnpm install
+            pnpm install ${bamboo.varsPnpm}
 
             pnpm build-txt
     - inject-variables:
