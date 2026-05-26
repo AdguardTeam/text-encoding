@@ -4,8 +4,6 @@ plan:
   project-key: AJL
   key: AGTEXTENCODTEST
   name: text-encoding - test
-variables:
-  dockerPuppeteer: adguard/puppeteer-runner:22.14--24.5--0
 
 stages:
   - Build:
@@ -16,10 +14,8 @@ stages:
 
 Build:
   key: BUILD
-  docker:
-    image: '${bamboo.dockerPuppeteer}'
-    volumes:
-      ${system.PNPM_DIR}: "${bamboo.cachePnpm}"
+  other:
+    clean-working-dir: true
   tasks:
     - checkout:
         force-clean-build: true
@@ -27,46 +23,36 @@ Build:
         interpreter: SHELL
         scripts:
           - |-
-            set -e
-            set -x
-
-            # init submodules for tests
-            git submodule update --init --recursive
+            set -ex
 
             # Fix mixed logs
             exec 2>&1
 
-            ls -laht
+            export DOCKER_BUILDKIT=1
 
-            # Exclude '--ignore-scripts' from pnpm arguments
-            # since it prevents postinstall scripts from running
-            # so Chrome is not installed which is crucial for tests
-            originalPnpmArgs="$bamboo_varsPnpm"
-            modifiedPnpmArgs=$(echo "$originalPnpmArgs" | sed 's/--ignore-scripts//g')
-
-            # Install dependencies
-            pnpm install ${modifiedPnpmArgs}
-
-            # Run checks
-            pnpm test
-  final-tasks:
+            docker build \
+              --file Dockerfile \
+              --progress plain \
+              --build-arg BUILD_RUN_ID=${bamboo.buildNumber} \
+              --target test-output \
+              --output type=local,dest=output \
+              .
     - script:
         interpreter: SHELL
         scripts:
           - |-
-            set -x
-            set -e
-
-            # Fix mixed logs
-            exec 2>&1
-
-            ls -la
-
-            echo "Size before cleanup:" && du -h | tail -n 1
-            rm -rf node_modules
-            echo "Size after cleanup:" && du -h | tail -n 1
+            if [ -f output/exit-code.txt ]; then
+              exit $(cat output/exit-code.txt)
+            fi
+            echo "output/exit-code.txt not found"
+            exit 1
+  final-tasks:
+    - script:
+        interpreter: SHELL
+        scripts:
+          - "./bamboo-specs/scripts/cleanup.sh"
   requirements:
-    - adg-docker: true
+    - adg-docker: "true"
 
 branches:
   create: for-pull-request
