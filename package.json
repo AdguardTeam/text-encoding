@@ -23,7 +23,6 @@
         "lib/encoding-indexes.js"
     ],
     "scripts": {
-        "build-txt": "node tools/build-txt.js",
         "test": "node tools/run-tests.js"
     },
     "repository": {

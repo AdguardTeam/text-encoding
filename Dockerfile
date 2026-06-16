@@ -34,7 +34,7 @@ COPY . .
 
 # ============================================================================
 # Stage: build
-# Runs build-txt and packs the npm tarball
+# Packs the npm tarball for publishing
 # ============================================================================
 FROM source AS build
 
@@ -45,8 +45,6 @@ ARG BUILD_RUN_ID=""
 RUN --mount=type=cache,target=/pnpm-store,id=text-encoding-pnpm \
     echo "${BUILD_RUN_ID}" > /tmp/.build-run-id && \
     mkdir -p /out/artifacts && \
-    pnpm run build-txt && \
-    cp dist/build.txt /out/artifacts/ && \
     pnpm pack --out /out/artifacts/text-encoding.tgz
 
 FROM scratch AS build-output
