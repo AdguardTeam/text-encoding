@@ -1,0 +1,35 @@
+name: Build
+
+description: Lints, tests, and builds on pull requests and pushes to master.
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Lint, test, build
+    runs-on: team-extensions
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          submodules: true
+
+      - name: Build and test via Docker
+        run: DOCKER_BUILDKIT=1 docker build --progress plain --target test-output --output ./test-out .
+
+      - name: Verify test exit code
+        run: |
+          if [ -f ./test-out/exit-code.txt ]; then
+            CODE=$(cat ./test-out/exit-code.txt)
+            if [ "$CODE" != "0" ]; then
+              echo "::error::Tests failed with exit code $CODE"
+              exit 1
+            fi
+          else
+            echo "::error::exit-code.txt not found — test output missing"
+            exit 1
+          fi

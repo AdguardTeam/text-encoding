@@ -50,7 +50,7 @@ RUN --mount=type=cache,target=/pnpm-store,id=text-encoding-pnpm \
     pnpm pack --out /out/artifacts/text-encoding.tgz
 
 FROM scratch AS build-output
-COPY --from=build /out/ /
+COPY --from=build /out/artifacts/ /
 
 # ============================================================================
 # Test base image (uses puppeteer-runner for Chrome system libraries)
