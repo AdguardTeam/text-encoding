@@ -103,11 +103,9 @@ ARG BUILD_RUN_ID=""
 
 RUN --mount=type=cache,target=/pnpm-store-test,id=text-encoding-test-pnpm \
     echo "${BUILD_RUN_ID}" > /tmp/.build-run-id && \
+    pnpm test && \
     mkdir -p /out && \
-    set +e; \
-    pnpm test; \
-    echo $? > /out/exit-code.txt; \
-    exit 0
+    touch /out/test-passed.txt
 
 FROM scratch AS test-output
 COPY --from=test /out/ /
