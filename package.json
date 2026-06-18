@@ -20,14 +20,17 @@
         "index.js",
         "index.d.ts",
         "lib/encoding.js",
-        "lib/encoding-indexes.js"
+        "lib/encoding-indexes.js",
+        "README.md",
+        "LICENSE.md",
+        "CHANGELOG.md"
     ],
     "scripts": {
         "test": "node tools/run-tests.js"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/AdguardTeam/text-encoding.git"
+        "url": "git+https://github.com/AdGuardSoftwareLimited/ext-text-encoding.git"
     },
     "keywords": [
         "encoding",
@@ -37,7 +40,7 @@
     "bugs": {
         "url": "https://github.com/AdguardTeam/text-encoding/issues"
     },
-    "homepage": "https://github.com/AdguardTeam/text-encoding",
+    "homepage": "https://github.com/AdguardTeam/text-encoding#readme",
     "license": "(Unlicense OR Apache-2.0)",
     "pnpm": {
         "neverBuiltDependencies": []
