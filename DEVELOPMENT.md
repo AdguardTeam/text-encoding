@@ -61,6 +61,11 @@ If you already cloned without the submodule, initialize it:
 git submodule update --init --recursive
 ```
 
+> **Note:** If you only need to use or extend the library, you can
+> clone the
+> [public mirror](https://github.com/AdguardTeam/text-encoding)
+> instead.
+
 ### Install Dependencies
 
 ```bash

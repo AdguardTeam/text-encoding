@@ -103,7 +103,9 @@ files are published as-is.
   after cloning, run `git submodule update --init --recursive`.
 
 - When making changes to the project structure, ensure the Project
-  Structure section in `AGENTS.md` is updated and remains valid.
+  Structure section in `AGENTS.md` is updated and remains valid. Apply
+  the same to `DEVELOPMENT.md` and `DEPLOYMENT.md` if related changes
+  were made to them.
 
 - When modifying CI workflows, ensure `prepare-release.yml` and
   `publish-release.yml` stay in sync. The version is derived from git
