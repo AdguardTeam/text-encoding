@@ -1,6 +1,5 @@
 {
     "name": "@adguard/text-encoding",
-    "version": "0.8.3",
     "description": "Polyfill for the Encoding Living Standard's API.",
     "author": "Joshua Bell <inexorabletash@gmail.com>",
     "contributors": [
@@ -24,7 +23,6 @@
         "lib/encoding-indexes.js"
     ],
     "scripts": {
-        "build-txt": "node tools/build-txt.js",
         "test": "node tools/run-tests.js"
     },
     "repository": {

@@ -34,7 +34,7 @@ COPY . .
 
 # ============================================================================
 # Stage: build
-# Runs build-txt and packs the npm tarball
+# Packs the npm tarball for publishing
 # ============================================================================
 FROM source AS build
 
@@ -45,12 +45,10 @@ ARG BUILD_RUN_ID=""
 RUN --mount=type=cache,target=/pnpm-store,id=text-encoding-pnpm \
     echo "${BUILD_RUN_ID}" > /tmp/.build-run-id && \
     mkdir -p /out/artifacts && \
-    pnpm run build-txt && \
-    cp dist/build.txt /out/artifacts/ && \
     pnpm pack --out /out/artifacts/text-encoding.tgz
 
 FROM scratch AS build-output
-COPY --from=build /out/ /
+COPY --from=build /out/artifacts/ /
 
 # ============================================================================
 # Test base image (uses puppeteer-runner for Chrome system libraries)
@@ -105,11 +103,9 @@ ARG BUILD_RUN_ID=""
 
 RUN --mount=type=cache,target=/pnpm-store-test,id=text-encoding-test-pnpm \
     echo "${BUILD_RUN_ID}" > /tmp/.build-run-id && \
+    pnpm test && \
     mkdir -p /out && \
-    set +e; \
-    pnpm test; \
-    echo $? > /out/exit-code.txt; \
-    exit 0
+    touch /out/test-passed.txt
 
 FROM scratch AS test-output
 COPY --from=test /out/ /
