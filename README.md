@@ -13,6 +13,11 @@ or particular module schemes.
 
 Basic examples and tests are included.
 
+> **Note:** This package is developed in
+> [AdGuardSoftwareLimited/ext-text-encoding](https://github.com/AdGuardSoftwareLimited/ext-text-encoding).
+> The [AdguardTeam/text-encoding](https://github.com/AdguardTeam/text-encoding)
+> repository is a public mirror.
+
 - [Development](#development)
     - [Cloning](#cloning)
     - [Testing](#testing)
@@ -33,7 +38,7 @@ Basic examples and tests are included.
 > `--recurse-submodules` option. Otherwise, tests will not work.
 
 ```bash
-git clone --recurse-submodules <repo url>
+git clone --recurse-submodules git@github.com:AdGuardSoftwareLimited/ext-text-encoding.git
 ```
 
 ### Testing
@@ -152,3 +157,10 @@ TextEncoder `encode()` method accepts an optional dictionary and
 `stream` option, e.g. `encoder.encode(string, {stream: true});` This
 is not needed for standard encoding since the input is always in
 complete code points.
+
+## Documentation
+
+- [Development](DEVELOPMENT.md)
+- [Deployment](DEPLOYMENT.md)
+- [Changelog](CHANGELOG.md)
+- [LLM agent rules](AGENTS.md)
