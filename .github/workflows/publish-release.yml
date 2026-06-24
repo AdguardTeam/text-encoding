@@ -60,7 +60,7 @@ jobs:
     with:
       artifact-name: npm-package
       package-file: text-encoding.tgz
-      environment: extensions
+      environment: npm
     # `contents: read` — download artifact only
     # `id-token: write` — npm Trusted Publishing via OIDC
     permissions:
