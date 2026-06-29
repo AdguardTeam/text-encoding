@@ -25,3 +25,7 @@ jobs:
       submodules: true
       ref: ${{ inputs.ref }}
     secrets: inherit
+    permissions:
+      contents: write  # create tag & GitHub release (tag-from-changelog, mirror-and-release)
+      id-token: write  # OIDC trusted publishing to npm (deploy-to-npm, mirror-and-release)
+      actions: write   # disable/enable workflows in the mirror repo (mirror-and-release)
