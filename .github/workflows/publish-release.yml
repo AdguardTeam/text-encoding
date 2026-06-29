@@ -25,3 +25,7 @@ jobs:
       submodules: true
       ref: ${{ inputs.ref }}
     secrets: inherit
+    permissions:
+      contents: write
+      id-token: write
+      actions: write
