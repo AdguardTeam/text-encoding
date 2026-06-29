@@ -21,6 +21,8 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 ### Security
 
+## [0.8.5] - 2026-06-29
+
 ## [0.8.4] - 2026-06-19
 
 ## [0.8.3] - 2025-04-07
@@ -51,7 +53,8 @@ The format is based on [Keep a Changelog], and this project adheres to [Semantic
 
 - Decode method with Uint8Array input.
 
-[Unreleased]: https://github.com/AdguardTeam/text-encoding/compare/v0.8.4...HEAD
+[Unreleased]: https://github.com/AdguardTeam/text-encoding/compare/v0.8.5...HEAD
+[0.8.5]: https://github.com/AdguardTeam/text-encoding/compare/v0.8.4...v0.8.5
 [0.8.4]: https://github.com/AdguardTeam/text-encoding/compare/v0.8.3...v0.8.4
 [0.8.3]: https://github.com/AdguardTeam/text-encoding/compare/v0.8.0...v0.8.3
 [0.8.0]: https://github.com/AdguardTeam/text-encoding/compare/v0.7.2...v0.8.0
