@@ -8,6 +8,7 @@ build/
 output/
 node_modules/
 Dockerfile*
+# NOTE: do not exclude *.md here — pnpm pack runs inside Docker and the
+# published tarball must include README.md, LICENSE.md and CHANGELOG.md.
 *.log
-*.md
 *.tgz
