@@ -11,3 +11,6 @@
 
 For the full release pipeline documentation, see
 [ext-shared-actions/docs/publish-release.md](https://github.com/AdGuardSoftwareLimited/ext-shared-actions/blob/master/docs/publish-release.md).
+
+A manual run of `Prepare release` shows the requested tag in the Actions
+run list, for example `Prepare release v0.9.0`.
